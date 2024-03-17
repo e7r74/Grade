@@ -1,0 +1,70 @@
+/* author: https://codepen.io/sacsam005/pen/BaJmaXy
+Sachin Samal */
+body {
+  background: #ffa17f;
+  background: -webkit-linear-gradient(to right, #00223e, #ffa17f);
+  background: linear-gradient(to right, #00223e, #ffa17f);
+  overflow: hidden;
+}
+
+.star0 {
+  height: 1px;
+  width: 1px;
+  opacity: 1;
+  position: absolute;
+}
+
+.star1 {
+  height: 2px;
+  width: 2px;
+  border-radius: 50%;
+  opacity: 1;
+  position: absolute;
+}
+
+.star2 {
+  height: 3px;
+  width: 3px;
+  border-radius: 50%;
+  opacity: 1;
+  position: absolute;
+}
+
+.star3 {
+  height: 4px;
+  width: 4px;
+  border-radius: 50%;
+  opacity: 1;
+  position: absolute;
+}
+
+.instagram-icon {
+  width: 40px;
+  height: 40px;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.instagram-icon:hover {
+  transform: scale(1.1); /* Увеличение размера при наведении */
+}
+
+/* Стили для анимации появления иконки */
+@keyframes fadeIn {
+  0% {
+      opacity: 0;
+      transform: translateY(-20px);
+  }
+  100% {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+.instagram-icon {
+  animation: fadeIn 0.5s ease forwards; /* Применение анимации */
+}
