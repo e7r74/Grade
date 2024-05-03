@@ -1,70 +1,97 @@
-/* author: https://codepen.io/sacsam005/pen/BaJmaXy
-Sachin Samal */
-body {
-  background: #ffa17f;
-  background: -webkit-linear-gradient(to right, #00223e, #ffa17f);
-  background: linear-gradient(to right, #00223e, #ffa17f);
-  overflow: hidden;
-}
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
-.star0 {
-  height: 1px;
-  width: 1px;
-  opacity: 1;
-  position: absolute;
-}
-
-.star1 {
-  height: 2px;
-  width: 2px;
-  border-radius: 50%;
-  opacity: 1;
-  position: absolute;
-}
-
-.star2 {
-  height: 3px;
-  width: 3px;
-  border-radius: 50%;
-  opacity: 1;
-  position: absolute;
-}
-
-.star3 {
-  height: 4px;
-  width: 4px;
-  border-radius: 50%;
-  opacity: 1;
-  position: absolute;
-}
-
-.instagram-icon {
-  width: 40px;
-  height: 40px;
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 1000;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-.instagram-icon:hover {
-  transform: scale(1.1); /* Увеличение размера при наведении */
-}
-
-/* Стили для анимации появления иконки */
-@keyframes fadeIn {
-  0% {
-      opacity: 0;
-      transform: translateY(-20px);
-  }
-  100% {
-      opacity: 1;
-      transform: translateY(0);
-  }
-}
-
-.instagram-icon {
-  animation: fadeIn 0.5s ease forwards; /* Применение анимации */
+ /* Общие стили для HTML и BODY */
+ html, body {
+     margin: 0;
+     height: 100%;
+     overflow: auto; /* Изменено на auto для восстановления прокрутки */
+     font-family: 'Roboto', sans-serif; /* Исправлено на 'Roboto', sans-serif */
+     color: white;
+     font-size: 9px;
+ }
+ 
+ /* Стили для заднего фона */
+ #magic {
+     position: fixed;
+     width: 100%;
+     height: 100vh;
+     top: 0;
+     left: 0;
+     z-index: -9999;
+ }
+ 
+ /* Стили для содержимого страницы */
+ .playground {
+     position: relative; /* Изменено на relative для корректного позиционирования внутренних элементов */
+     width: 100%;
+     height: 100vh;
+     display: flex;
+     flex-wrap: nowrap;
+     flex-direction: column;
+     justify-content: flex-end;
+     align-items: center;
+ }
+ 
+ /* Дополнительные стили */
+ .bottomPosition {
+     text-align: center;
+     margin-bottom: 50px;
+ }
+ 
+ .minText {
+     font-size: 14px;
+ }
+ 
+ /* Стили для ссылок */
+ a {
+     color: white;
+     font-size: 12px;
+     text-decoration: none;
+ }
+ 
+ /* Стили для логотипа */
+ .logo {
+     width: 50px;
+     height: 50px;
+ }
+ 
+ /* Стили для иконки Instagram */
+ .instagram-icon {
+     width: 40px;
+     height: 40px;
+     position: fixed;
+     top: 20px;
+     right: 20px;
+     z-index: 1000;
+     cursor: pointer;
+     transition: transform 0.3s ease;
+ }
+ 
+ .instagram-icon:hover {
+     transform: scale(1.1);
+ }
+ 
+ /* Анимация появления иконки Instagram */
+ @keyframes fadeIn {
+     0% {
+         opacity: 0;
+         transform: translateY(-20px);
+     }
+     100% {
+         opacity: 1;
+         transform: translateY(0);
+     }
+ }
+ 
+ .instagram-icon {
+     animation: fadeIn 0.5s ease forwards;
+ }
+ 
+ /* Запрет взаимодействия с задним фоном */
+ #universe {
+     pointer-events: none;
+ }
+ #result {
+  font-size: 16px; /* Установите желаемый размер шрифта */
+  font-weight: bold; /* Установите желаемый начертание шрифта */
 }
