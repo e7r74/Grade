@@ -3,82 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r125/three.min.js"></script>
+    <script src="main.js"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <title>Grade </title>
+
+    <title>exam</title>
     <style>
-        .calculator {
-            max-width: 300px;
-            margin: 50px auto;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            text-align: center;
-        }
-        input {
-            margin-bottom: 10px;
-            padding: 5px;
-        }
-        button {
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
+      .calculator {
+          max-width: 300px;
+          margin: 50px auto;
+          padding: 20px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          text-align: center;
+      }
+      input {
+          margin-bottom: 10px;
+          padding: 5px;
+      }
+      button {
+          padding: 10px 20px;
+          background-color: #007bff;
+          color: #fff;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+      }
+      button:hover {
+          background-color: #0056b3;
+      }
 
-        
-        /* Ваши стили остаются неизменными */
-        /* ... */
+      
 
-        /* Стили для иконки Instagram */
-        .instagram-icon {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            font-size: 30px;
-            color: #fff;
-            text-decoration: none;
-        }
-   
-    </style>
+      .instagram-icon {
+          position: fixed;
+          bottom: 20px;
+          right: 20px;
+          font-size: 30px;
+          color: #fff;
+          text-decoration: none;
+      }
+ 
+  </style>
 </head>
 <body>
-    <div class="calculator">
-        <h2>Калькулятор</h2>
-        <input type="number" id="mid1" placeholder="Введите значение рк1">
-        <input type="number" id="mid2" placeholder="Введите значение рк2">
-        <button onclick="calculate()">Вычислить</button>
-        <div id="result"></div>
-    </div>
+  <div class="calculator">
+    <h2>Калькулятор</h2>
+    <input type="number" id="mid1" placeholder="Введите значение рк1">
+    <input type="number" id="mid2" placeholder="Введите значение рк2">
+    <button onclick="calculate()">Вычислить</button>
+    <div id="result"></div>
+</div>
 
-    <div class="instagram-feed">
-      <!-- Иконка Instagram -->
-      <a class="instagram-icon" href="https://www.instagram.com/joldas_ee?igsh=ZmE2NnczZmpnajIy&utm_source=qr/" target="_blank">
-        <i class="fab fa-instagram"></i>
-      </a>
-  </div>
+<div class="instagram-feed">
+  <!-- Иконка Instagram -->
+  <a class="instagram-icon" href="https://www.instagram.com/joldas_ee?igsh=ZmE2NnczZmpnajIy&utm_source=qr/" target="_blank">
+    <i class="fab fa-instagram"></i>
+  </a>
+</div>
 
 
-    <div id="universe"></div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.3.2/web-animations.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/polymer/3.4.1/polymer-element.js"></script>
-    <script src="main.js"></script>
+<!-- <div id="universe"></div> -->
+<div id="universe" style="pointer-events: none;"></div>
 
-    <script>
-        function calculate() {
-            var mid1 = parseFloat(document.getElementById("mid1").value);
-            var mid2 = parseFloat(document.getElementById("mid2").value);
-            var result = (((mid1 + mid2) / 2) * 0.6 - 70) / -0.4;
-            if (result > 100) {
-                result = 100;
-            }
-            document.getElementById("result").innerHTML = "Результат: " + result.toFixed(2);
+<script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.3.2/web-animations.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/polymer/3.4.1/polymer-element.js"></script>
+<script src="main.js"></script>
+
+<script>
+    function calculate() {
+        var mid1 = parseFloat(document.getElementById("mid1").value);
+        var mid2 = parseFloat(document.getElementById("mid2").value);
+        var result = (((mid1 + mid2) / 2) * 0.6 - 70) / -0.4;
+        if (result > 100) {
+            result = 100;
         }
-    </script>
+        document.getElementById("result").innerHTML = "Результат: " + result.toFixed(2);
+    }
+</script>
+    <script type="x-shader/x-vertex" id="vertexshader">
+
+        attribute float size;
+        attribute vec3 customColor;
+        varying vec3 vColor;
+      
+        void main() {
+      
+          vColor = customColor;
+          vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
+          gl_PointSize = size * ( 300.0 / -mvPosition.z );
+          gl_Position = projectionMatrix * mvPosition;
+      
+        }
+      
+      </script>
+      <script type="x-shader/x-fragment" id="fragmentshader">
+      
+       uniform vec3 color;
+       uniform sampler2D pointTexture;
+      
+       varying vec3 vColor;
+      
+       void main() {
+      
+         gl_FragColor = vec4( color * vColor, 1.0 );
+         gl_FragColor = gl_FragColor * texture2D( pointTexture, gl_PointCoord );
+      
+       }
+      </script>
+      
+      <div id="magic"></div>
+      <div class="playground">
+        
+      </div>
 </body>
 </html>
